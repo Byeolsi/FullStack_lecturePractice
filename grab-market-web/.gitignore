@@ -1,17 +1,15 @@
-실습 자료/
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/grab-market-web/node_modules
-/grab-market-web/.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-/grab-market-web/coverage
+/coverage
 
 # production
-/grab-market-web/build
+/build
 
 # misc
 .DS_Store
