@@ -1,28 +1,27 @@
-import logo from "./logo.svg";
 import "./App.css";
-import ChildComponent from "./child.js";
-import TimerComponent from "./timer";
+// import MainPageComponent from "./main/index.js";
+// index.js 생략 가능. main 폴더 하나만 작성해도 자동으로 index.js를 찾음.
+import MainPageComponent from "./main";
+import { Routes, Route } from "react-router-dom";
+import ProductPage from "./product";
+import UploadPage from "./upload";
 
 function App() {
-  const text = "인프런 수강생 여러분 화이팅!";
-  const sayHello = function () {
-    return <h3>인프런 강의 너무 좋아</h3>;
-  };
-  const sayHello2 = function () {
-    alert("안녕하세요");
-  };
   return (
     <div>
-      <h1>안녕하세요!</h1>
-      <h2>{text}</h2>
-      {sayHello()}
-      <div onClick={sayHello2}>클릭해주세요</div>
-      <TimerComponent />
-      <ChildComponent name="그랩" age={27} />
-      <ChildComponent name="민수" age={25} />
-      <ChildComponent name="철수" age={30} />
-      <ChildComponent name="슬기" age={28} />
-      <ChildComponent name="우석" age={26} />
+      <div id="header">
+        <div id="header-area">
+          <img src="/images/icons/logo.png" />
+        </div>
+      </div>
+      <div id="body">
+        <Routes>
+          <Route path={"/*"} element={<MainPageComponent />} />
+          <Route path={"/products/:id"} element={<ProductPage />} />
+          <Route path={"/upload/*"} element={<UploadPage />} />
+        </Routes>
+      </div>
+      <div id="footer"></div>
     </div>
   );
 }
