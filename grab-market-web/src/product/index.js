@@ -11,11 +11,9 @@ function ProductPage() {
 
   useEffect(function () {
     axios
-      .get(
-        `https://d31d03b0-d7e3-49d4-88ce-8075ec9ee29c.mock.pstmn.io/products/${id}`
-      )
+      .get(`http://localhost:8080/products/${id}`)
       .then(function (result) {
-        setProduct(result.data);
+        setProduct(result.data.product);
       })
       .catch(function (error) {
         console.error(error);
