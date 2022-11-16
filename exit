@@ -1,0 +1,47 @@
+[33mcommit 1cc7d2e307198f383190b830e1686301508cddd9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Wed Nov 16 19:29:42 2022 +0900
+
+    heroku 배포 준비
+
+[33mcommit 0713d325239ad9fc3fe682774380a20caae55dd1[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Wed Nov 9 22:15:24 2022 +0900
+
+    10주차 - 상품 업로드 기능, REST API, 슬라이딩 배너, 결제하기 기능
+
+[33mcommit cc31547b1361593312997149195cff9bd54235fb[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Fri Nov 4 20:09:21 2022 +0900
+
+    9주차 - Express, Sequelize, SQLite, 상품 생성 및 조회, multer
+
+[33mcommit 4cfcb41036e1542d1ca2c57811eb13e7eea4b887[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Thu Oct 20 13:55:58 2022 +0900
+
+    7주차 - Ant Design, 상품 업로드 페이지, Node 서버, Express 프레임워크
+
+[33mcommit c126029cfb8c3591e59e6c10f8671017d3f6380d[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Thu Oct 13 00:57:40 2022 +0900
+
+    6주차 -  리액트로 개발 시작, react-router-dom, Link, 상품 상세 페이지
+
+[33mcommit c1603d6cc48efe6da0f87f2d64eec9e712c8c2ee[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Wed Oct 5 22:10:00 2022 +0900
+
+    5주차 - ES6 기본 문법, React 기본 문법
+
+[33mcommit f14b087180137602afacfcae8ddbe8bc6de847f1[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Thu Sep 29 00:08:14 2022 +0900
+
+    4주차 - axios와 Postman 이용
+
+[33mcommit 14c17da5a675a84ac180e8e1639d74e93ec8c53d[m
+Author: dldntjr0516 <dldntjr0516@gmail.com>
+Date:   Thu Sep 15 19:49:37 2022 +0900
+
+    first commit

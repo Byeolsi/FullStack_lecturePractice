@@ -123,7 +123,7 @@ function UploadPage() {
         </Form.Item>
         <Form.Item>
           <Button id="submit-button" size="large" htmlType="submit">
-            문제 등록하기
+            상품 등록하기
           </Button>
         </Form.Item>
       </Form>
