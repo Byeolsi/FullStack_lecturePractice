@@ -3,6 +3,9 @@ const cors = require("cors");
 const app = express();
 const models = require("./models");
 const multer = require("multer");
+
+const detectProduct = require("./helpers/detectProduct");
+
 const port = process.env.PORT || 8080;
 
 // json 형식을 사용하겠음을 의미.
@@ -73,18 +76,19 @@ app.post("/products", (req, res) => {
   if (!name || !description || !price || !seller || !imageUrl) {
     res.status(400).send("모든 필드를 입력해주세요.");
   }
-
-  models.Product.create({ name, description, price, seller, imageUrl })
-    .then((result) => {
-      console.log("상품 생성 결과 : ", result);
-      res.send({
-        result,
+  detectProduct(imageUrl, (type) => {
+    models.Product.create({ name, description, price, seller, imageUrl, type })
+      .then((result) => {
+        console.log("상품 생성 결과 : ", result);
+        res.send({
+          result,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(400).send("상품 업로드에 문제가 발생했습니다.");
       });
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(400).send("상품 업로드에 문제가 발생했습니다.");
-    });
+  });
 });
 
 // id를 통해 상품을 조회.
@@ -105,6 +109,40 @@ app.get("/products/:id", (req, res) => {
     .catch((error) => {
       console.log(error);
       res.status(400).send("상품 조회에 에러가 발생했습니다.");
+    });
+});
+
+app.get("/products/:id/recommendation", (req, res) => {
+  const { id } = req.params;
+
+  // id와 일치하는 상품을 찾음.
+  models.Product.findOne({
+    where: {
+      id,
+    },
+  })
+    .then((product) => {
+      console.log(product);
+      const type = product.type;
+
+      // 해당 상품과 같은 타입인 상품을 모두 찾음.
+      models.Product.findAll({
+        where: {
+          type,
+          id: {
+            [models.Sequelize.Op.ne]: id,
+          },
+        },
+      }).then((products) => {
+        // 찾은 상품들을 모두 반환.
+        res.send({
+          products,
+        });
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("에러가 발생했습니다.");
     });
 });
 
