@@ -138,6 +138,7 @@ app.get("/products/:id/recommendation", (req, res) => {
         res.send({
           products,
         });
+        console.log("products: " + products);
       });
     })
     .catch((error) => {

@@ -17,9 +17,8 @@ import {
   SafeAreaView,
 } from "react-native";
 
-import Avatar from "../assets/icons/avatar.png";
-
 import { API_URL } from "../config/constants";
+import ProductCard from "../components/ProductCard";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -75,42 +74,11 @@ export default function MainScreen(props) {
         <View style={styles.productList}>
           {products.map((product, index) => {
             return (
-              <TouchableOpacity
+              <ProductCard
                 key={index}
-                onPress={() => {
-                  props.navigation.navigate("Product", {
-                    id: product.id,
-                  });
-                }}
-              >
-                <View style={styles.productCard}>
-                  {product.soldout === 1 && <View style={styles.productBlur} />}
-                  <View>
-                    <Image
-                      style={styles.productImage}
-                      source={{
-                        uri: `${API_URL}/${product.imageUrl}`,
-                      }}
-                      resizeMode={"contain"}
-                    />
-                  </View>
-                  <View style={styles.productContents}>
-                    <Text style={styles.productName}>{product.name}</Text>
-                    <Text style={styles.productPrice}>{product.price}원</Text>
-                    <View style={styles.productFooter}>
-                      <View style={styles.productSeller}>
-                        <Image style={styles.productAvatar} source={Avatar} />
-                        <Text style={styles.productSellerName}>
-                          {product.seller}
-                        </Text>
-                      </View>
-                      <Text style={styles.productDate}>
-                        {dayjs(product.createdAt).fromNow()}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
+                product={product}
+                navigation={props.navigation}
+              />
             );
           })}
         </View>

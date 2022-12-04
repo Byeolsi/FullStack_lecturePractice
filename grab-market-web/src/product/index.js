@@ -6,26 +6,43 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../config/constants";
 import dayjs from "dayjs";
 import { Button, message } from "antd";
+import ProductCard from "../components/ProductCard";
 
 function ProductPage() {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
 
   const getProduct = () => {
     axios
       .get(`${API_URL}/products/${id}`)
-      .then(function (result) {
+      .then((result) => {
         setProduct(result.data.product);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error(error);
       });
   };
 
-  useEffect(function () {
-    getProduct();
-  }, []);
+  const getRecommendations = () => {
+    axios
+      .get(`${API_URL}/products/${id}/recommendation`)
+      .then((result) => {
+        setProducts(result.data.products);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(
+    function () {
+      getProduct();
+      getRecommendations();
+    },
+    [id]
+  );
 
   if (product === null) {
     return <h1>상품 정보를 받고 있습니다...</h1>;
@@ -68,7 +85,22 @@ function ProductPage() {
         >
           재빨리 구매하기
         </Button>
-        <pre id="description">{product.description}</pre>
+        <div id="description-box">
+          <pre id="description">{product.description}</pre>
+        </div>
+        <div>
+          <h1>추천 상품</h1>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            {products.map((product, index) => {
+              return <ProductCard key={index} product={product} />;
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
